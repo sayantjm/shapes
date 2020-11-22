@@ -6,7 +6,7 @@ import shapes.Circle;
 import shapes.Rectangle;
 import shapes.Shape;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by sayantjm on 21/11/20
@@ -27,6 +27,18 @@ public class DrawingToolsTest {
     public void given_a_rectangle_with_redBorderAdded_when_drawIsTriggered_then_rectangleIsDrownWithRedBorder() {
         this.rectangle = new RedBorderDrawing(this.rectangle);
         assertEquals(RECTANGLE_DROWN.concat(RECTANGLE_WITH_RED_BORDER), this.rectangle.draw());
+    }
+
+    @Test
+    public void given_a_rectangle_with_nullDecorator_when_drawIsTriggered_then_ExceptionIsReceived() {
+        try {
+            this.rectangle = new RedBorderDrawing(null);
+            assertEquals(RECTANGLE_DROWN.concat(RECTANGLE_WITH_RED_BORDER), this.rectangle.draw());
+            fail("An exception is expected if the shape parameter is null");
+        } catch (IllegalArgumentException exception) {
+            assertNotNull(exception);
+            assertTrue(exception.getMessage().equalsIgnoreCase("A valid shape is needed as parameter."));
+        }
     }
 
     @Test

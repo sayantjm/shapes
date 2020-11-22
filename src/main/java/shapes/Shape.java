@@ -17,6 +17,11 @@ package shapes;
     Design the class structure to support this.
 
  */
+
+/**
+ * Abstract Class for creating shapes
+ * it provides the method draw()
+ */
 public abstract class Shape {
     String description = "Unknown shape";
 
